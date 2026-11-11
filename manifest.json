@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "LLM Context Cleaner & Markdown Extractor",
+  "version": "1.0.0",
+  "description": "Extract clean, ad-free Markdown from any webpage directly into your clipboard for LLM prompts.",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "scripting",
+    "storage",
+    "clipboardWrite"
+  ],
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "commands": {
+    "quick-extract": {
+      "suggested_key": {
+        "default": "Alt+Shift+C",
+        "mac": "Alt+Shift+C"
+      },
+      "description": "Quick clean and copy Markdown to clipboard"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

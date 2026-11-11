@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM Context Cleaner</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo-title">
+        <span class="icon">⚡</span>
+        <h1>Context Cleaner</h1>
+      </div>
+      <span class="badge" id="token-badge">~0 tokens</span>
+    </header>
+
+    <div class="stats-bar">
+      <span id="char-count">0 chars</span>
+      <span class="dot">•</span>
+      <span id="word-count">0 words</span>
+      <span class="dot">•</span>
+      <span id="reading-time">0 min read</span>
+    </div>
+
+    <!-- Mode Selector: Single Tab vs All Tabs -->
+    <div class="mode-tabs">
+      <button id="mode-single-btn" class="mode-tab active">
+        <span>📄 Active Tab</span>
+      </button>
+      <button id="mode-all-btn" class="mode-tab">
+        <span>📚 All Tabs (Batch PRO)</span>
+      </button>
+    </div>
+
+    <div class="format-options">
+      <label class="radio-label">
+        <input type="radio" name="format" value="markdown" checked>
+        <span>Markdown</span>
+      </label>
+      <label class="radio-label">
+        <input type="radio" name="format" value="text">
+        <span>Raw Text</span>
+      </label>
+      <label class="radio-label">
+        <input type="radio" name="format" value="llm-xml">
+        <span>&lt;document&gt; XML</span>
+      </label>
+    </div>
+
+    <div class="preset-row">
+      <label for="prompt-preset" class="preset-label">Prompt Preset:</label>
+      <select id="prompt-preset" class="preset-select">
+        <option value="none">None (Clean Content Only)</option>
+        <option value="summarize">TL;DR / Key Insights</option>
+        <option value="code_audit">Code & Architecture Audit</option>
+        <option value="fact_check">Fact-Check & Verification</option>
+        <option value="qa_study">Generate Q&A / Flashcards</option>
+      </select>
+    </div>
+
+    <div class="preview-box">
+      <textarea id="preview-text" placeholder="Extracting content..." readonly></textarea>
+    </div>
+
+    <div class="actions">
+      <button id="copy-btn" class="primary-btn">
+        <span class="btn-icon">📋</span>
+        <span id="copy-text">Copy to Clipboard</span>
+      </button>
+      <button id="refresh-btn" class="secondary-btn" title="Re-extract">
+        🔄
+      </button>
+      <button id="pro-btn" class="secondary-btn" title="PRO License">
+        ⭐ PRO
+      </button>
+    </div>
+    
+    <!-- PRO License Modal / Section -->
+    <div id="license-panel" class="license-panel hidden">
+      <div class="license-header">
+        <span class="pro-tag">PRO FEATURES</span>
+        <button id="close-license-btn" class="close-btn">&times;</button>
+      </div>
+      <p class="license-desc">Unlock unlimited batch tab merging, custom prompt presets & prioritized token optimizer.</p>
+      <div class="license-inputs">
+        <input type="text" id="license-key-input" placeholder="Enter License Key (e.g. PRO-XXXX-XXXX)" />
+        <button id="activate-license-btn" class="activate-btn">Activate</button>
+      </div>
+      <div class="license-footer">
+        <a href="https://buymeacoffee.com/uilifetools/e/597182" target="_blank" id="buy-license-link">Get Lifetime PRO ($9) &rarr;</a>
+      </div>
+    </div>
+    
+    <div id="status-msg" class="status-msg"></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+:root {
+  --bg-color: #0f172a;
+  --surface-color: #1e293b;
+  --border-color: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --accent-color: #38bdf8;
+  --accent-hover: #0284c7;
+  --success-color: #10b981;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  width: 380px;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+}
+
+.container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-title h1 {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 12px;
+  background-color: rgba(56, 189, 248, 0.15);
+  color: var(--accent-color);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.stats-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.dot {
+  opacity: 0.5;
+}
+
+.mode-tabs {
+  display: flex;
+  gap: 6px;
+  background-color: var(--surface-color);
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.mode-tab {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.mode-tab:hover {
+  color: var(--text-primary);
+}
+
+.mode-tab.active {
+  background-color: rgba(56, 189, 248, 0.15);
+  color: var(--accent-color);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+}
+
+.format-options {
+  display: flex;
+  gap: 8px;
+  background: var(--surface-color);
+  padding: 4px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.radio-label {
+  flex: 1;
+  text-align: center;
+  font-size: 11px;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+}
+
+.radio-label input {
+  display: none;
+}
+
+.radio-label:has(input:checked) {
+  background-color: var(--accent-color);
+  color: #04101d;
+  font-weight: 600;
+}
+
+.preset-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background-color: var(--surface-color);
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.preset-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.preset-select {
+  flex: 1;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 11px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.preset-select:focus {
+  border-color: var(--accent-color);
+}
+
+.preview-box {
+  width: 100%;
+}
+
+textarea {
+  width: 100%;
+  height: 140px;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  padding: 10px;
+  resize: none;
+  outline: none;
+  line-height: 1.4;
+}
+
+textarea:focus {
+  border-color: var(--accent-color);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.primary-btn {
+  flex: 1;
+  background-color: var(--accent-color);
+  color: #04101d;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background-color 0.15s ease;
+}
+
+.primary-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+.primary-btn.copied {
+  background-color: var(--success-color);
+  color: #ffffff;
+}
+
+.secondary-btn {
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: border-color 0.15s;
+}
+
+.secondary-btn:hover {
+  border-color: var(--text-secondary);
+}
+
+.status-msg {
+  font-size: 11px;
+  text-align: center;
+  min-height: 14px;
+  color: var(--text-secondary);
+}
+
+/* PRO License Panel */
+.license-panel {
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: fadeIn 0.2s ease;
+}
+
+.license-panel.hidden {
+  display: none;
+}
+
+.license-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pro-tag {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent-color);
+  letter-spacing: 0.5px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.license-desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.3;
+}
+
+.license-inputs {
+  display: flex;
+  gap: 6px;
+}
+
+#license-key-input {
+  flex: 1;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-primary);
+  padding: 6px 8px;
+  font-size: 11px;
+  font-family: monospace;
+  outline: none;
+}
+
+#license-key-input:focus {
+  border-color: var(--accent-color);
+}
+
+.activate-btn {
+  background-color: var(--accent-color);
+  color: #04101d;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.license-footer {
+  text-align: center;
+  margin-top: 2px;
+}
+
+#buy-license-link {
+  color: #38bdf8;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#buy-license-link:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}

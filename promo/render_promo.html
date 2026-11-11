@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  body {
+    width: 1280px;
+    height: 800px;
+    background: radial-gradient(circle at top right, #1e293b, #090d16);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 80px;
+    color: #f8fafc;
+    overflow: hidden;
+  }
+  .left-side {
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .badge {
+    align-self: flex-start;
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    color: #38bdf8;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  h1 {
+    font-size: 42px;
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  p.subtitle {
+    font-size: 17px;
+    line-height: 1.5;
+    color: #94a3b8;
+  }
+  .features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .feature-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  /* Mockup Window */
+  .mockup-container {
+    width: 440px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6), 0 0 40px rgba(56, 189, 248, 0.15);
+    overflow: hidden;
+  }
+  .window-bar {
+    background: #1e293b;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #334155;
+  }
+  .dots {
+    display: flex;
+    gap: 6px;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-red { background: #ef4444; }
+  .dot-yellow { background: #f59e0b; }
+  .dot-green { background: #10b981; }
+  .window-title { font-size: 12px; color: #94a3b8; font-weight: 600; }
+  .popup-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .p-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .p-token-badge {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+  }
+  .p-tabs {
+    display: flex;
+    gap: 6px;
+    background: #1e293b;
+    padding: 4px;
+    border-radius: 8px;
+  }
+  .p-tab {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+    padding: 6px;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+  .p-tab.active {
+    background: rgba(56, 189, 248, 0.2);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.4);
+  }
+  .p-tab.inactive { color: #64748b; }
+  .p-preview {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 12px;
+    font-family: monospace;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #cbd5e1;
+    height: 180px;
+    overflow: hidden;
+  }
+  .tag { color: #38bdf8; }
+  .p-btn {
+    background: #38bdf8;
+    color: #04101d;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+  }
+</style>
+</head>
+<body>
+  <div class="left-side">
+    <div class="badge">CHROME EXTENSION (MANIFEST V3)</div>
+    <h1>Turn Web Noise into Pure LLM Context</h1>
+    <p class="subtitle">Extract clean, ad-free Markdown and batch-merge 10+ browser tabs into structured XML knowledge bases for ChatGPT, Claude, and Gemini.</p>
+    <div class="features-list">
+      <div class="feature-item">
+        <div class="feature-icon">🧹</div>
+        <span>100% Ad, Cookie & Sidebar Auto-Stripping</span>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📚</div>
+        <span>Batch Tab Collector: Merge multiple tabs in 1 click</span>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🪙</div>
+        <span>Live Token Counter & Prompt Presets</span>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🔒</div>
+        <span>100% Client-Side & Zero Tracking</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup-container">
+    <div class="window-bar">
+      <div class="dots">
+        <div class="dot dot-red"></div>
+        <div class="dot dot-yellow"></div>
+        <div class="dot dot-green"></div>
+      </div>
+      <div class="window-title">Chrome Extension • LLM Context Cleaner</div>
+      <div style="width: 32px"></div>
+    </div>
+    <div class="popup-content">
+      <div class="popup-header">
+        <div class="p-logo">⚡ Context Cleaner</div>
+        <div class="p-token-badge">~1,840 tokens</div>
+      </div>
+      <div class="p-tabs">
+        <div class="p-tab inactive">📄 Active Tab</div>
+        <div class="p-tab active">📚 All Tabs (Batch PRO)</div>
+      </div>
+      <div class="p-preview">
+        <span class="tag">&lt;knowledge_base count="3"&gt;</span><br>
+        &nbsp;&nbsp;<span class="tag">&lt;document index="1"&gt;</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;# System Architecture & APIs<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;Source: https://docs.example.com/api<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;Clean, ad-free Markdown content...<br>
+        &nbsp;&nbsp;<span class="tag">&lt;/document&gt;</span><br>
+        &nbsp;&nbsp;<span class="tag">&lt;document index="2"&gt;</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;# Performance Benchmarks...<br>
+        <span class="tag">&lt;/knowledge_base&gt;</span>
+      </div>
+      <div class="p-btn">📋 Copy to Clipboard (Ready)</div>
+    </div>
+  </div>
+</body>
+</html>
