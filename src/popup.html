@@ -3,97 +3,141 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LLM Context Cleaner</title>
+  <title>Context Cleaner PRO</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <div class="container">
-    <header class="header">
-      <div class="logo-title">
-        <span class="icon">⚡</span>
-        <h1>Context Cleaner</h1>
+  <div class="app-wrapper">
+    <!-- Top Bar -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <div class="brand-info">
+          <h1>Context Cleaner</h1>
+          <span class="subtext">LLM Markdown Extractor</span>
+        </div>
       </div>
-      <span class="badge" id="token-badge">~0 tokens</span>
+      <div class="header-right">
+        <span class="token-pill" id="token-badge">~0 tokens</span>
+        <button id="pro-badge-btn" class="pro-chip" title="License Status">PRO</button>
+      </div>
     </header>
 
-    <div class="stats-bar">
-      <span id="char-count">0 chars</span>
-      <span class="dot">•</span>
-      <span id="word-count">0 words</span>
-      <span class="dot">•</span>
-      <span id="reading-time">0 min read</span>
-    </div>
-
-    <!-- Mode Selector: Single Tab vs All Tabs -->
-    <div class="mode-tabs">
-      <button id="mode-single-btn" class="mode-tab active">
-        <span>📄 Active Tab</span>
-      </button>
-      <button id="mode-all-btn" class="mode-tab">
-        <span>📚 All Tabs (Batch PRO)</span>
-      </button>
-    </div>
-
-    <div class="format-options">
-      <label class="radio-label">
-        <input type="radio" name="format" value="markdown" checked>
-        <span>Markdown</span>
-      </label>
-      <label class="radio-label">
-        <input type="radio" name="format" value="text">
-        <span>Raw Text</span>
-      </label>
-      <label class="radio-label">
-        <input type="radio" name="format" value="llm-xml">
-        <span>&lt;document&gt; XML</span>
-      </label>
-    </div>
-
-    <div class="preset-row">
-      <label for="prompt-preset" class="preset-label">Prompt Preset:</label>
-      <select id="prompt-preset" class="preset-select">
-        <option value="none">None (Clean Content Only)</option>
-        <option value="summarize">TL;DR / Key Insights</option>
-        <option value="code_audit">Code & Architecture Audit</option>
-        <option value="fact_check">Fact-Check & Verification</option>
-        <option value="qa_study">Generate Q&A / Flashcards</option>
-      </select>
-    </div>
-
-    <div class="preview-box">
-      <textarea id="preview-text" placeholder="Extracting content..." readonly></textarea>
-    </div>
-
-    <div class="actions">
-      <button id="copy-btn" class="primary-btn">
-        <span class="btn-icon">📋</span>
-        <span id="copy-text">Copy to Clipboard</span>
-      </button>
-      <button id="refresh-btn" class="secondary-btn" title="Re-extract">
-        🔄
-      </button>
-      <button id="pro-btn" class="secondary-btn" title="PRO License">
-        ⭐ PRO
-      </button>
-    </div>
-    
-    <!-- PRO License Modal / Section -->
-    <div id="license-panel" class="license-panel hidden">
-      <div class="license-header">
-        <span class="pro-tag">PRO FEATURES</span>
-        <button id="close-license-btn" class="close-btn">&times;</button>
+    <!-- Metrics Bar -->
+    <div class="metrics-row">
+      <div class="metric-item">
+        <span class="metric-val" id="char-count">0</span>
+        <span class="metric-lbl">chars</span>
       </div>
-      <p class="license-desc">Unlock unlimited batch tab merging, custom prompt presets & prioritized token optimizer.</p>
-      <div class="license-inputs">
-        <input type="text" id="license-key-input" placeholder="Enter License Key (e.g. PRO-XXXX-XXXX)" />
-        <button id="activate-license-btn" class="activate-btn">Activate</button>
+      <div class="metric-divider"></div>
+      <div class="metric-item">
+        <span class="metric-val" id="word-count">0</span>
+        <span class="metric-lbl">words</span>
       </div>
-      <div class="license-footer">
-        <a href="https://buymeacoffee.com/uilifetools/e/597182" target="_blank" id="buy-license-link">Get Lifetime PRO ($9) &rarr;</a>
+      <div class="metric-divider"></div>
+      <div class="metric-item">
+        <span class="metric-val" id="reading-time">1m</span>
+        <span class="metric-lbl">read</span>
       </div>
     </div>
-    
-    <div id="status-msg" class="status-msg"></div>
+
+    <!-- Mode Switcher -->
+    <div class="nav-segment">
+      <button id="mode-single-btn" class="segment-btn active">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+        </svg>
+        <span>Active Tab</span>
+      </button>
+      <button id="mode-all-btn" class="segment-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+        </svg>
+        <span>All Tabs (Batch PRO)</span>
+      </button>
+    </div>
+
+    <!-- Options Grid -->
+    <div class="controls-grid">
+      <div class="control-col">
+        <label class="field-lbl">Format</label>
+        <div class="pill-group">
+          <label class="pill-opt">
+            <input type="radio" name="format" value="markdown" checked>
+            <span>Markdown</span>
+          </label>
+          <label class="pill-opt">
+            <input type="radio" name="format" value="text">
+            <span>Text</span>
+          </label>
+          <label class="pill-opt">
+            <input type="radio" name="format" value="llm-xml">
+            <span>XML</span>
+          </label>
+        </div>
+      </div>
+      <div class="control-col">
+        <label class="field-lbl">Preset</label>
+        <select id="prompt-preset" class="custom-select">
+          <option value="none">Clean Content Only</option>
+          <option value="summarize">TL;DR / Key Insights</option>
+          <option value="code_audit">Code & Architecture Audit</option>
+          <option value="fact_check">Fact-Check Claims</option>
+          <option value="qa_study">Q&A Study Cards</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Live Preview -->
+    <div class="preview-container">
+      <div class="preview-meta">
+        <span class="preview-label">Live Output Preview</span>
+        <button id="refresh-btn" class="icon-action-btn" title="Re-extract content">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+          </svg>
+        </button>
+      </div>
+      <textarea id="preview-text" spellcheck="false" placeholder="Waiting for extraction..." readonly></textarea>
+    </div>
+
+    <!-- Primary Action Bar -->
+    <div class="action-bar">
+      <button id="copy-btn" class="btn-primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span id="copy-text">Copy Context</span>
+      </button>
+    </div>
+
+    <!-- PRO License Drawer -->
+    <div id="license-panel" class="license-drawer hidden">
+      <div class="drawer-header">
+        <div class="drawer-title">
+          <span class="star-badge">PRO</span>
+          <span>Unlock Full Lifetime Suite</span>
+        </div>
+        <button id="close-license-btn" class="drawer-close">&times;</button>
+      </div>
+      <p class="drawer-desc">Gain unlimited multi-tab merges, custom model headers, and priority token optimization.</p>
+      <div class="drawer-input-row">
+        <input type="text" id="license-key-input" placeholder="Enter License Key..." />
+        <button id="activate-license-btn" class="btn-activate">Activate</button>
+      </div>
+      <div class="drawer-footer">
+        <a href="https://buymeacoffee.com/uilifetools/e/597182" target="_blank" class="buy-link">Get Lifetime License ($9) &rarr;</a>
+      </div>
+    </div>
+
+    <div id="status-msg" class="status-indicator">Ready</div>
   </div>
   <script src="popup.js"></script>
 </body>
